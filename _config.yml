@@ -3,22 +3,20 @@
 
 ## Site author's information.
 author:
-  name:      Susan Potter
-  title:     Software Engineer
-  email:     me@susanpotter.net
-  site:      http://susanpotter.net
-  location:  "Urbana, IL, US"
+  name:      Chris Ford 
+  email:     christophertford@gmail.com 
+  site:      http://literateprogrammer.blogspot.com
   gh:
-    user:    mbbx6spp
+    user:    ctford
     repo:    7languages7weeks
-  twitter:   SusanPotter
+  twitter:   ctford 
   disqus: 
     # if you don't have disqus setup for this new site, please make sure to comment it.
-    shortname: mbbx6spp-github-blog
+    shortname: ctford-github-blog
 
 ## The absolute URL of your site. Should be user.github.com or whatever is in
 ## the root CNAME file
-url:         http://mbbx6spp.github.com/7languages7weeks
+url:         http://ctford.github.com/7languages7weeks
 
 ## The name of the site, <title> and <h1> in _layouts/default.html
 title:       "Seven Languages in Seven Weeks #7languages7weeks blog"
