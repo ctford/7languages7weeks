@@ -22,7 +22,7 @@ url:         http://ctford.github.com/7languages7weeks
 title:       "Seven Languages in Seven Weeks #7languages7weeks blog"
 
 ## <meta name=description> and <h2> in /_layouts/default.html
-description: "This is a blog documenting one developer's journey in the \#7languages7weeks challenge."
+description: "This is a blog documenting one developer's journey in the #7languages7weeks challenge."
 
 ## <meta name=keywords> in  /_layouts/default.html, probably not useful anymore.
 keywords:    [ Ruby, Io, Prolog, Scala, Erlang, Clojure, Haskell ]
