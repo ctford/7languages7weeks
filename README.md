@@ -42,8 +42,7 @@ Developer
 
 Amendments to ***this*** repository will be made by 
 
-* [@ctford](http://twitter.com/ctford) also known as 
-* [ctford on GitHub](http://github.com/ctford).
+* [@ctford](http://twitter.com/ctford) also known as [ctford on GitHub](http://github.com/ctford).
 
 Newcomers should fork 
 [7languages7weeks repository](http://github.com/mbbx6spp/7languages7weeks)
