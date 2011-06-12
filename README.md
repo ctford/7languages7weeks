@@ -42,12 +42,8 @@ Developer
 
 Amendments to ***this*** repository will be made by 
 
---add your info below instead of mine--
-
-* [@SusanPotter](http://twitter.com/SusanPotter) also known as 
-* [mbbx6spp on GitHub](http://github.com/mbbx6spp).
-
---add your info above instead of mine--
+* [@ctford](http://twitter.com/ctford) also known as 
+* [ctford on GitHub](http://github.com/ctford).
 
 Newcomers should fork 
 [7languages7weeks repository](http://github.com/mbbx6spp/7languages7weeks)
@@ -62,8 +58,6 @@ to start in their journey:
 License
 -------
 
---express your content modifications license below--
-
-All code changes and content from blog posts found on the 
+All code changes and content here and from blog posts found on the 
 [blog site](http://mbbx6spp.github.com/7languages7weeks) are licensed under the 
 [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported license](http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode).
