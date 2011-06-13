@@ -9,9 +9,10 @@
 class Tree
   attr_accessor :children, :node_name
   
-  def initialize(name, children=[])
-    @children = children
+  def initialize(name, kidmap=[])
     @node_name = name
+    @children = []
+    kidmap.each {|kidname, grandkids| @children.push Tree.new(kidname, grandkids)}  
   end
   
   def visit_all(&block)
@@ -24,9 +25,11 @@ class Tree
   end
 end
 
-ruby_tree = Tree.new( "Ruby", 
-  [Tree.new("Reia"), 
-   Tree.new("MacRuby")] )
+ruby_tree = Tree.new('root', {
+    'var'  => {'www' => {}},
+    'etc'  => {},
+    'home' => {'ctford' => {}, 'linus' => {}}
+}) 
 
 puts "Visiting a node"
 ruby_tree.visit {|node| puts node.node_name}
