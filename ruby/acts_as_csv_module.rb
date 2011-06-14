@@ -21,13 +21,16 @@ module ActsAsCsv
   module InstanceMethods
     
     def read
-      @csv_contents = []
       filename = self.class.to_s.downcase + '.txt'
       file = File.new(filename)
       @headers = file.gets.chomp.split(', ')
 
+      @rows = []
       file.each do |row|
-        @csv_contents << row.chomp.split(', ')
+        map = {} 
+        elements = row.chomp.split(', ')
+        elements.each_with_index {|item, index| map[@headers[index]] = item}
+        @rows << (MethodMap.new map)
       end
     end
     
@@ -35,6 +38,10 @@ module ActsAsCsv
     
     def initialize
       read 
+    end
+
+    def each 
+      @rows.each {|row| yield row} 
     end
 
   end
@@ -46,7 +53,18 @@ class RubyCsv  # no inheritance! You can mix it in
   acts_as_csv
 end
 
-m = RubyCsv.new
-puts m.headers.inspect
-puts m.csv_contents.inspect
+class MethodMap 
+  def initialize(map) 
+    @map = map
+  end
+  def method_missing key 
+    @map[key.to_s]
+  end
+end
 
+map = {'foo' => 'bar'}
+methodMap = MethodMap.new map
+puts methodMap.foo
+
+m = RubyCsv.new
+m.each {|row| puts row.country}
