@@ -27,6 +27,14 @@ Matrix print := method(
 	")" print
 )
 
+Matrix foreach := method(
+	rows foreach(row,
+		row foreach(item,
+			item doMessage(call message argAt(0))
+		)
+	)
+)
+
 matrix := Matrix clone
 matrix setSize(2, 3)
 
@@ -35,3 +43,4 @@ matrix atPut(1, 2, "dog")
 matrix at(0, 0) println
 
 matrix println
+matrix foreach(println)
