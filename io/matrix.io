@@ -28,9 +28,11 @@ Matrix print := method(
 )
 
 Matrix foreach := method(
+	iterating_variable := call message argAt(0)
 	rows foreach(row,
 		row foreach(item,
-			item doMessage(call message argAt(0))
+			iterating_variable := item
+			doMessage(call message argAt(1))
 		)
 	)
 )
@@ -43,4 +45,4 @@ matrix atPut(1, 2, "dog")
 matrix at(0, 0) println
 
 matrix println
-matrix foreach(println)
+matrix foreach(item, item println)
