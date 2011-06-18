@@ -5,7 +5,7 @@ queens(Queens) :-
 	peaceful(Queens).
 
 % Describes a potential solution.
-candidate([(1, _)], 1, _).
+candidate([], 0, _).
 candidate([(N, Y)|Rest], N, Max) :-
 	Next is N - 1,
 	legal((N, Y), Max, Max),
