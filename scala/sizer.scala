@@ -4,9 +4,19 @@ import Actor._
 
 // START:loader
 object PageLoader {
- def getPageSize(url : String) = Source.fromURL(url).mkString.length
+ def getPageSize(url : String) = {
+	val page = new Page(url)
+	page.fetch()
+	page.length()
+ }
 }
 // END:loader
+
+class Page(url : String) {
+	var contents = "" 
+ 	def fetch() = { contents = Source.fromURL(url).mkString }
+	def length() = contents.length
+}
 
 val urls = List("http://www.amazon.com/", 
                "http://www.twitter.com/",
