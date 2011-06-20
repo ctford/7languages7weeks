@@ -2,16 +2,6 @@ import scala.io._
 import scala.actors._
 import Actor._
 
-// START:loader
-object PageLoader {
- def getPageSize(url : String) = {
-	val page = new Page(url)
-	page.fetch()
-	page.size
- }
-}
-// END:loader
-
 class Page(url : String) {
 	var contents = "" 
  	def fetch() = { contents = Source.fromURL(url).mkString }
@@ -31,37 +21,22 @@ def timeMethod(method: () => Unit) = {
 }
 // END:time
 
-// START:sequential
-def getPageSizeSequentially(urls:List[String]) = {
- for(url <- urls) {
-   val page = new Page(url)
-   page.fetch()
-   println(url + " size: " + page.size + " links: " + page.links.size )
- }
-}
-// END:sequential
-
 // START:concurrent
 def getPageSizeConcurrently(urls:List[String]) = {
  val caller = self
 
  for(url <- urls) {
-   actor { caller ! (url, PageLoader.getPageSize(url)) }
+   actor { caller ! (url, {val page = new Page(url); page.fetch(); page}) }
  }
 
  for(i <- 1 to urls.size) {
    receive {
-     case (url, size) =>
-       println("Size for " + url + ": " + size)            
+     case (url, page:Page) =>
+       println("Size for " + page.url + ": " + page.size + "kb (" + page.links.size + " links)")            
    }
  }
 }
 // END:concurrent
 
 val urls = List.fromArray(args)
-
-println("Sequential run:")
-timeMethod { () => getPageSizeSequentially(urls) }
-
-println("Concurrent run")
 timeMethod { () => getPageSizeConcurrently(urls) }
