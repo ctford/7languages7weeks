@@ -22,11 +22,6 @@ class Page(url : String) {
 	}
 }
 
-val urls = List("http://www.amazon.com/", 
-               "http://www.twitter.com/",
-               "http://www.google.com/",
-               "http://www.cnn.com/" )
-
 // START:time
 def timeMethod(method: () => Unit) = {
  val start = System.nanoTime
@@ -37,17 +32,17 @@ def timeMethod(method: () => Unit) = {
 // END:time
 
 // START:sequential
-def getPageSizeSequentially() = {
+def getPageSizeSequentially(urls:List[String]) = {
  for(url <- urls) {
    val page = new Page(url)
    page.fetch()
-   println(url + " size: " + page.size + " links: " + page.links.length)
+   println(url + " size: " + page.size + " links: " + page.links.size )
  }
 }
 // END:sequential
 
 // START:concurrent
-def getPageSizeConcurrently() = {
+def getPageSizeConcurrently(urls:List[String]) = {
  val caller = self
 
  for(url <- urls) {
@@ -63,10 +58,10 @@ def getPageSizeConcurrently() = {
 }
 // END:concurrent
 
-// START:script
+val urls = List.fromArray(args)
+
 println("Sequential run:")
-timeMethod { getPageSizeSequentially }
+timeMethod { () => getPageSizeSequentially(urls) }
 
 println("Concurrent run")
-timeMethod { getPageSizeConcurrently }
-// END:script
+timeMethod { () => getPageSizeConcurrently(urls) }
