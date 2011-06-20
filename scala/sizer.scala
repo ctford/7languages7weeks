@@ -7,7 +7,7 @@ object PageLoader {
  def getPageSize(url : String) = {
 	val page = new Page(url)
 	page.fetch()
-	page.length()
+	page.size
  }
 }
 // END:loader
@@ -15,7 +15,11 @@ object PageLoader {
 class Page(url : String) {
 	var contents = "" 
  	def fetch() = { contents = Source.fromURL(url).mkString }
-	def length() = contents.length
+	def size() = contents.length
+	def links() = {
+		val linkMatch = """href=""".r
+		linkMatch findAllIn contents toList
+	}
 }
 
 val urls = List("http://www.amazon.com/", 
@@ -35,7 +39,9 @@ def timeMethod(method: () => Unit) = {
 // START:sequential
 def getPageSizeSequentially() = {
  for(url <- urls) {
-   println("Size for " + url + ": " + PageLoader.getPageSize(url))
+   val page = new Page(url)
+   page.fetch()
+   println(url + " size: " + page.size + " links: " + page.links.length)
  }
 }
 // END:sequential
