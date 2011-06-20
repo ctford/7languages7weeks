@@ -32,7 +32,7 @@ def getPageSizeConcurrently(urls:List[String]) = {
  for(i <- 1 to urls.size) {
    receive {
      case (url, page:Page) =>
-       println("Size for " + page.url + ": " + page.size + "kb (" + page.links.size + " links)")            
+       println("Size for " + url + ": " + page.size + "kb (" + page.links.size + " links)")            
    }
  }
 }
